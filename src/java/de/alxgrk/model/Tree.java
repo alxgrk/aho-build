@@ -1,4 +1,4 @@
-package de.alxgrk;
+package de.alxgrk.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;

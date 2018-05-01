@@ -1,4 +1,4 @@
-package de.alxgrk;
+package de.alxgrk.model;
 
 public class Node {
 

@@ -7,6 +7,10 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import de.alxgrk.model.Edge;
+import de.alxgrk.model.Node;
+import de.alxgrk.model.Triple;
+
 public class FileReader {
 
     private Set<Triple> tripleSet;
