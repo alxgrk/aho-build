@@ -1,38 +1,29 @@
 package de.alxgrk.model;
 
+import lombok.Value;
+
+@Value
 public class Node {
 
-    private final int count;
+    int count;
 
-    private final boolean visible;
+    boolean visible;
 
     public static Node invisible() {
-        return new Node();
+        return new Node(-1);
     }
 
     public static Node of(int count) {
+        if (count < 0)
+            throw new IllegalArgumentException("Node value must be >= 0");
+
         return new Node(count);
     }
 
     private Node(int count) {
         this.count = count;
-        this.visible = true;
+        this.visible = count >= 0;
     }
-
-    private Node() {
-        this.count = -1;
-        this.visible = false;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    // BOILERPLATE
 
     @Override
     public String toString() {
@@ -40,28 +31,6 @@ public class Node {
             return "";
 
         return Integer.toString(count);
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + count;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Node other = (Node) obj;
-        if (count != other.count)
-            return false;
-        return true;
     }
 
 }
