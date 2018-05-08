@@ -36,9 +36,10 @@ public class FileReader {
                     String[] firstSplit = l.split(",");
                     Integer x = Integer.parseInt(firstSplit[0]);
 
-                    String[] secondSplit = firstSplit[1].split("|");
+                    String yAndZ = firstSplit[1];
+                    String[] secondSplit = yAndZ.split("\\|");
                     Integer y = Integer.parseInt(secondSplit[0]);
-                    Integer z = Integer.parseInt(secondSplit[2]);
+                    Integer z = Integer.parseInt(secondSplit[1]);
 
                     return new Triple(Edge.of(x, y), Node.of(z));
                 })
