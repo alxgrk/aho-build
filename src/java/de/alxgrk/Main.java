@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        FileReader reader = new FileReader(new File(args[0]));
+        FileReader reader = new FileReader(new File("src/resources/triple_set_easy.txt"));
         Tree result = AhoBuild.build(reader.getTripleSet(), new ArrayList<>(reader
                 .getLeaveSet()));
 
