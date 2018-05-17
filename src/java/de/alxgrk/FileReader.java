@@ -17,8 +17,8 @@ public class FileReader {
 
     private Set<Triple> tripleSet;
 
-    private TreeSet<Node> leaveSet = new TreeSet<>((c1, c2) -> Integer.compare(c1.getCount(), c2
-            .getCount()));
+    private TreeSet<Node> leaveSet = new TreeSet<>((c1, c2) -> c1.getValue().compareTo(c2
+            .getValue()));
 
     public FileReader(File input) throws IOException {
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(input));) {
@@ -30,16 +30,13 @@ public class FileReader {
 
     private Set<Triple> extractTriples(BufferedReader reader) {
         return reader.lines()
-                .filter(l -> !l.startsWith("#"))
-                .filter(l -> !l.isEmpty())
+                .map(l -> l.split("\\|"))
+                .filter(l -> l.length > 1 && !l[0].isEmpty() && !l[1].isEmpty())
                 .map(l -> {
-                    String[] firstSplit = l.split(",");
-                    Integer x = Integer.parseInt(firstSplit[0]);
-
-                    String yAndZ = firstSplit[1];
-                    String[] secondSplit = yAndZ.split("\\|");
-                    Integer y = Integer.parseInt(secondSplit[0]);
-                    Integer z = Integer.parseInt(secondSplit[1]);
+                    String[] xySplit = l[0].split(",");
+                    String x = xySplit[0];
+                    String y = xySplit[1];
+                    String z = l[1];
 
                     return new Triple(Edge.of(x, y), Node.of(z));
                 })

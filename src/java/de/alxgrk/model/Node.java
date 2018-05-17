@@ -5,24 +5,24 @@ import lombok.Value;
 @Value
 public class Node {
 
-    int count;
+    String value;
 
     boolean visible;
 
     public static Node invisible() {
-        return new Node(-1);
+        return new Node("");
     }
 
-    public static Node of(int count) {
-        if (count < 0)
-            throw new IllegalArgumentException("Node value must be >= 0");
+    public static Node of(String value) {
+        if (value.length() < 1)
+            throw new IllegalArgumentException("Node value length must be >= 0");
 
-        return new Node(count);
+        return new Node(value);
     }
 
-    private Node(int count) {
-        this.count = count;
-        this.visible = count >= 0;
+    private Node(String value) {
+        this.value = value;
+        this.visible = value.length() >= 1;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Node {
         if (!visible)
             return "";
 
-        return Integer.toString(count);
+        return value;
     }
 
 }

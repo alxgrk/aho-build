@@ -22,8 +22,8 @@ public class ConnectedComponents {
         while (!leftOvers.isEmpty()) {
 
             // store nodes contained by a connected component in a sorted set
-            TreeSet<Node> subTree = new TreeSet<>((c1, c2) -> Integer.compare(c1.getCount(), c2
-                    .getCount()));
+            TreeSet<Node> subTree = new TreeSet<>((c1, c2) -> c1.getValue().compareTo(c2
+                    .getValue()));
 
             leftOvers = leftOvers.stream()
                     .filter(n -> {

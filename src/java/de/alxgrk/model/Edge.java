@@ -12,7 +12,7 @@ public class Edge {
 
     Node second;
 
-    public static Edge of(int first, int second) {
+    public static Edge of(String first, String second) {
         return new Edge(Node.of(first), Node.of(second));
     }
 
